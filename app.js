@@ -1,39 +1,30 @@
-
-/**
- * Module dependencies.
- */
-
-var express = require('express');
-
-var app = module.exports = express.createServer();
-
-var port = process.env.PORT || 3000;
-// Configuration
-
-app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
-
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
-});
-
-app.configure('production', function(){
-  app.use(express.errorHandler()); 
-});
-
-// Routes
-
-app.get('/', function(req, res){
-  res.render('index', {
-    title: 'Express'
+(function() {
+  var app, express, port;
+  express = require("express");
+  app = module.exports = express.createServer();
+  port = process.env.PORT || 3000;
+  app.configure(function() {
+    app.set("views", __dirname + "/views");
+    app.set("view engine", "jade");
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+    app.use(app.router);
+    return app.use(express.static(__dirname + "/public"));
   });
-});
-
-app.listen(port);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+  app.configure("development", function() {
+    return app.use(express.errorHandler({
+      dumpExceptions: true,
+      showStack: true
+    }));
+  });
+  app.configure("production", function() {
+    return app.use(express.errorHandler());
+  });
+  app.get("/", function(req, res) {
+    return res.render("index", {
+      title: "Express"
+    });
+  });
+  app.listen(port);
+  console.log("listening on port " + (app.address().port) + " in " + app.settings.env + " mode");
+}).call(this);
