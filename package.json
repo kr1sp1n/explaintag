@@ -6,7 +6,7 @@
   ]
   , "private": true
   , "dependencies": {
-      "express": "2.3.12"
+      "express": ">= 2.3.12"
     , "jade": ">= 0.0.1"
   }
 }
