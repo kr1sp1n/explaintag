@@ -1,6 +1,8 @@
 express = require "express"
 app = module.exports = express.createServer()
 port = process.env.PORT or 3000
+neo = require "neo4j"
+neodb = process.env.NEO4J_URL or "http://localhost:7474"
 
 app.configure ->
   app.set "views", __dirname + "/views"
@@ -19,7 +21,16 @@ app.configure "development", ->
 app.configure "production", ->
   app.use express.errorHandler()
 
-app.get "/", (req, res) ->
+app.post "/hashtags/", (req, res) ->
+  console.log("hashtag")
+  db = new neo.GraphDatabase(neodb)
+  ht =
+    value: req.body.value
+    type: "hashtag"
+
+  db_ht = db.createNode ht
+  console.log("created #{console.dir(ht)}")
+  db_ht.index "hashtags", "value", ht.value
   res.render "index",
     title: "Express"
 
