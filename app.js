@@ -7,6 +7,7 @@ var express = require('express');
 
 var app = module.exports = express.createServer();
 
+var port = process.env.PORT || 3000;
 // Configuration
 
 app.configure(function(){
@@ -34,5 +35,5 @@ app.get('/', function(req, res){
   });
 });
 
-app.listen(3000);
+app.listen(port);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
