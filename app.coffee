@@ -21,10 +21,6 @@ app.configure "development", ->
 app.configure "production", ->
   app.use express.errorHandler()
 
-app.get "/", (req, res) ->
-  res.render "index",
-    title: "Express"
-
 app.post "/hashtags/", (req, res) ->
   console.log("hashtag")
   db = new neo.GraphDatabase(neodb)
@@ -35,6 +31,8 @@ app.post "/hashtags/", (req, res) ->
   db_ht = db.createNode ht
   console.log("created #{console.dir(ht)}")
   db_ht.index "hashtags", "value", ht.value
+  res.render "index",
+    title: "Express"
 
 app.listen port
 console.log "listening on port #{app.address().port} in #{app.settings.env} mode"
