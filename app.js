@@ -1,10 +1,11 @@
 (function() {
-  var app, express, neo, neodb, port;
+  var app, db, delete_node, express, neo, neodb, port;
   express = require("express");
   app = module.exports = express.createServer();
   port = process.env.PORT || 3000;
   neo = require("neo4j");
   neodb = process.env.NEO4J_URL || "http://localhost:7474";
+  db = new neo.GraphDatabase(neodb);
   app.configure(function() {
     app.set("views", __dirname + "/views");
     app.set("view engine", "jade");
@@ -27,25 +28,38 @@
   });
   app.get("/", function(req, res) {
     return res.render("index", {
-      title: "Express"
+      title: "ExplainTag"
     });
   });
-  app.post("/hashtags/", function(req, res) {
-    var db, db_ht, ht;
-    console.log("hashtag");
-    db = new neo.GraphDatabase(neodb);
-    ht = {
-      value: req.body.value,
-      type: "hashtag",
-      definition: req.body.definition
-    };
-    db_ht = db.createNode(ht);
-    console.log("created " + (console.dir(ht)));
-    db_ht.index("hashtags", "value", ht.value);
-    db_ht.save();
-    return res.send("index", {
-      title: "Express"
-    });
+  delete_node = function(id) {
+    return x * x;
+  };
+  app["delete"]("/db", function(req, res) {
+    var food, _i, _len, _ref;
+    _ref = ['toast', 'cheese', 'wine'];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      food = _ref[_i];
+      eat(food);
+    }
+    return res.send("yo");
+  });
+  app.post("/hashtags", function(req, res) {
+    var definition, indexed_node, node, node_data, value;
+    value = req.param('value');
+    definition = req.param('definition');
+    if (value != null) {
+      node_data = {
+        type: 'hashtag',
+        value: value,
+        definition: definition
+      };
+      node = db.createNode(node_data);
+      node.save();
+      node.index('hashtags', 'value', value);
+      indexed_node = db.getIndexedNode('hashtags', 'value', value);
+      console.log(indexed_node.toString());
+    }
+    return res.send(definition);
   });
   app.listen(port);
   console.log("listening on port " + (app.address().port) + " in " + app.settings.env + " mode");
