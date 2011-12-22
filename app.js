@@ -11,7 +11,10 @@
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(app.router);
-    return app.use(express.static(__dirname + "/public"));
+    app.use(express.static(__dirname + "/public"));
+    return app.set("view options", {
+      pretty: true
+    });
   });
   app.configure("development", function() {
     return app.use(express.errorHandler({
