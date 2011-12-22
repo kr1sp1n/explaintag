@@ -1,25 +1,72 @@
 div.topbar
 	div.fill
 		div.container
-			a.brand(href='#home') ExplainTag
+			a.brand(href='#home') 
+				= title
 			ul.nav
 				li.active
 					a(href='#home')	home
 				li
-					a(href='#about') about	
+					a(href='#about') about
 				li
 					a(href='#index') list tags
 				li
 					a(href='#create') create a new tag
-	div.container
-		div.content
-			div.page-header
-				h1= title
-				p Welcome to the wonderful world of #hashtags.
-				p Hashtags are a great way to reference an event, a person, a thing or a place with very little characters.
+				li
+					a(href='https://twitter.com/ExplainTag') Twitter
+				li
+					a(href='https://github.com/kr1sp1n/explaintag') GitHub
+			a.pull-right(href="https://twitter.com/ExplainTag",title="Sign in with your Twitter account") 
+				img.login(src='images/sign-in-with-twitter-d.png')
+div.container
+	div.content
+		div.page-header
+			h1 ExplainTag
+				small know your tags
+		div
+			p Welcome to the wonderful world of #hashtags.
+			p Hashtags are a great way to reference an event, a person, a thing or a place with very little characters.
+			
+			h2 So, what's the deal here?
+			
+			p 
+				| Twitter is all about effective communication. In order to force as much information into a tweet and to syndicate & 
+				| reference other content #hashtags were invited. By using them you can easily find related tweets from users
+				| you don't follow.
 				
+			p
+				| With ExplainTag you'll get an easy way to understand #hashtags being used by your followers without asking them.
+				| You can ask out Twitter bot and it replies with the most plausible description added by other users.
 				
-				script(type='text/x-handlebars')
-					{{#view App.Start}}
-					<h1> Hello emberJS! (click me)</h1>
-					{{/view}}
+			p
+				| You can also help making this service more useful to everyone by adding new tags and descriptions as well as
+				| upvote correct and useful descriptions.
+				
+			h2 How to start?
+			
+			p Easiest way is to send a tweet to the bot using a hashtag:
+				
+			pre
+				@explaintag #gklst
+			
+			p would yield a @-reply to your Twitter screenname
+			
+			pre
+				@stefanhoth #gklst: http://geekli.st - An achievement-based profile page for geeks and tech people.
+			
+				
+			h2 What else?
+				
+				p
+					| In the upper navigation bar you can find a link to use add a new tag along with description 
+					| and by any chance a link leading to more info.
+				p
+					| Furthermore you can browse our lists to get to know more hashtags and optimize your tweet-skills.
+			
+				
+			script(type='text/x-handlebars')
+				{{#view App.Start}}
+				{{/view}}
+
+	footer
+		p &copy; Team ExplainTag 2011
