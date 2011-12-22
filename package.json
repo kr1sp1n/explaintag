@@ -2,11 +2,13 @@
     "name": "explaintag"
   , "version": "0.0.1"
   , "contributors": [
-    {"name": "Krispin", "email": "krispinone@googlemail.com", "web": "http://kr1sp1n.com"}
+    {"name": "Krispin", "email": "krispinone@googlemail.com", "web": "http://kr1sp1n.com"},
+    {"name": "t", "email": "t@c-base.org", "web": "http://t.crew.c-base.org"}
   ]
   , "private": true
   , "dependencies": {
       "express": ">= 2.3.12"
+    , "neo4j": "0.2.x"
     , "jade": ">= 0.0.1"
   }
 }

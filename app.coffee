@@ -11,6 +11,7 @@ app.configure ->
   app.use express.methodOverride()
   app.use app.router
   app.use express.static(__dirname + "/public")
+  app.set "view options", {pretty: true}
 
 app.configure "development", ->
   app.use express.errorHandler(
@@ -21,6 +22,7 @@ app.configure "development", ->
 app.configure "production", ->
   app.use express.errorHandler()
 
+ 
 app.get "/", (req, res) ->
   res.render "index",
     title: "Express"
@@ -31,10 +33,14 @@ app.post "/hashtags/", (req, res) ->
   ht =
     value: req.body.value
     type: "hashtag"
+    definition: req.body.definition
 
   db_ht = db.createNode ht
   console.log("created #{console.dir(ht)}")
   db_ht.index "hashtags", "value", ht.value
+  db_ht.save()
+  res.send "index",
+    title: "Express"
 
 app.listen port
 console.log "listening on port #{app.address().port} in #{app.settings.env} mode"
