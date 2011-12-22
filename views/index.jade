@@ -16,14 +16,17 @@ div.topbar
 					a(href='https://twitter.com/ExplainTag') Twitter
 				li
 					a(href='https://github.com/kr1sp1n/explaintag') GitHub
-			a.pull-right(href="https://twitter.com/ExplainTag",title="Sign in with your Twitter account") 
+			a.pull-right(href="/auth",title="Sign in with your Twitter account") 
 				img.login(src='images/sign-in-with-twitter-d.png')
+				
 div.container
 	div.content
 		div.page-header
 			h1 ExplainTag
 				small know your tags
 		div
+		script(type='text/x-handlebars')
+			{{#view ET.Home}}
 			p Welcome to the wonderful world of #hashtags.
 			p Hashtags are a great way to reference an event, a person, a thing or a place with very little characters.
 			
@@ -46,27 +49,25 @@ div.container
 			
 			p Easiest way is to send a tweet to the bot using a hashtag:
 				
-			pre
-				@explaintag #gklst
+			pre @explaintag #gklst
 			
 			p would yield a @-reply to your Twitter screenname
 			
-			pre
-				@stefanhoth #gklst: http://geekli.st - An achievement-based profile page for geeks and tech people.
-			
+			pre @stefanhoth #gklst: http://geekli.st - An achievement-based profile page for geeks and tech people.
 				
 			h2 What else?
 				
-				p
-					| In the upper navigation bar you can find a link to use add a new tag along with description 
-					| and by any chance a link leading to more info.
-				p
-					| Furthermore you can browse our lists to get to know more hashtags and optimize your tweet-skills.
+			p
+				| In the upper navigation bar you can find a link to use add a new tag along with description 
+				| and by any chance a link leading to more info.
+			p
+				| Furthermore you can browse our lists to get to know more hashtags and optimize your tweet-skills.
 			
+			
+			h2 How can I get in touch with you?
 				
-			script(type='text/x-handlebars')
-				{{#view App.Start}}
-				{{/view}}
+			p	Drop us an e-mail to this adress: explaintag@?????.???. We'll get back to you #asap.
+			{{/view}}
 
 	footer
-		p &copy; Team ExplainTag 2011
+		p &copy; ExplainTag Team 2011
