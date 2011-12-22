@@ -1,7 +1,25 @@
-h1= title
-p Welcome to #{title}
-
-script
-	{{#view App.MyView}}
-		h1 Hello emberJS! (click me)
-	{{/view}}
+div.topbar
+	div.fill
+		div.container
+			a.brand(href='#home') ExplainTag
+			ul.nav
+				li.active
+					a(href='#home')	home
+				li
+					a(href='#about') about	
+				li
+					a(href='#index') list tags
+				li
+					a(href='#create') create a new tag
+	div.container
+		div.content
+			div.page-header
+				h1= title
+				p Welcome to the wonderful world of #hashtags.
+				p Hashtags are a great way to reference an event, a person, a thing or a place with very little characters.
+				
+				
+				script(type='text/x-handlebars')
+					{{#view App.Start}}
+					<h1> Hello emberJS! (click me)</h1>
+					{{/view}}
